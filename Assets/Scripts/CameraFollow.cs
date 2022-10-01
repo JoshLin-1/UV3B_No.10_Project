@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] float FollowSpeed = 2f; 
     [SerializeField] float yOffset= 1f; 
-    public Transform target; 
+    public GameObject target; 
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       Vector3 newPos = new Vector3(target.position.x, target.position.y+ yOffset, -10f);
+       Vector3 newPos = new Vector3(target.transform.position.x, target.transform.position.y+ yOffset, -10f);
        transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed*Time.deltaTime) ;
     }
 }

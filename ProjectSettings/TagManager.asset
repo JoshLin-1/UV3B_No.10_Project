@@ -6,6 +6,7 @@ TagManager:
   tags:
   - h
   - s
+  - Interact
   layers:
   - Default
   - TransparentFX
