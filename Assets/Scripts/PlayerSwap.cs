@@ -10,6 +10,8 @@ public class PlayerSwap : MonoBehaviour
     GameObject SwapGameObject; 
     public CameraFollow cameraFollow;
     public SwapBack SwapBack;
+    public GameObject Dialogue; 
+    private bool canTalk = false; 
 
     // Start is called before the first frame update
 
@@ -43,6 +45,11 @@ public class PlayerSwap : MonoBehaviour
                 SwapBack.StartCount = true;
                 SwapGameObject = null;
             }
+
+            if(Dialogue != null && canTalk == true)
+            {
+                Dialogue.SetActive(true);
+            }
         }
     }
 
@@ -58,6 +65,11 @@ public class PlayerSwap : MonoBehaviour
         {
             Debug.Log("Get Object");
             SwapGameObject = other.gameObject; 
+        }
+        if(other.CompareTag("Talk"))
+        {
+            Debug.Log("Interact to Talk");
+            canTalk = true;
         }
     }
 

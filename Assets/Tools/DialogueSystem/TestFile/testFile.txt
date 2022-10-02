@@ -1,3 +1,4 @@
 A:test0. 9 s 0
 A:test1. 0 s 1
-B:test2. 1 s 3
+B:test2. 9 s 0
+A:. 1 s 3
