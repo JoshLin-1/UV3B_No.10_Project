@@ -39,7 +39,7 @@ public class PlayerSwap : MonoBehaviour
             if(SwapGameObject!= null)
             {
                 cameraFollow.target = SwapGameObject;
-                SwapGameObject.AddComponent<PlayerMovemnetController>();
+                SwapGameObject.AddComponent<PlayerMovementForItems>();
                 SwapGameObject.AddComponent<SwapBack>();
                 gameObject.SetActive(false);
                 SwapBack.StartCount = true;

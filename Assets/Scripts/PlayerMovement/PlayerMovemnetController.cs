@@ -7,7 +7,7 @@ public class PlayerMovemnetController : MonoBehaviour
 {
     public PlayerInputScheme _inputScheme;
     public CharacterController characterController; 
-    [SerializeField] float moveSpeed = 10; 
+    [SerializeField] float moveSpeed = 50; 
 
 
 

@@ -54,7 +54,7 @@ public class SwapBack : MonoBehaviour
         OriginalObject.SetActive(true);
         OriginalObject.transform.position = new Vector3(cameraFollow.transform.position.x, cameraFollow.transform.position.y, 0);
         cameraFollow.target = OriginalObject;
-        Destroy(GetComponent<PlayerMovemnetController>());
+        Destroy(GetComponent<PlayerMovementForItems>());
         Destroy(GetComponent<SwapBack>());
 
         
