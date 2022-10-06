@@ -6,14 +6,16 @@ TagManager:
   tags:
   - h
   - s
+  - Interact
+  - Talk
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Items
   - Water
   - UI
-  - 
+  - Plane
   - 
   - 
   - 
