@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerSwap : MonoBehaviour
 {
 
+    [Header("UI")]
+    public GameObject RadialUI; 
     private PlayerInputScheme _inputScheme;
     
     GameObject SwapGameObject; 
     public CameraFollow cameraFollow;
-    public SwapBack SwapBack;
+    RadialIndicatorClick radialIndicatorClick;
     public GameObject Dialogue; 
     private bool canTalk = false; 
 
@@ -19,10 +21,11 @@ public class PlayerSwap : MonoBehaviour
     {
         _inputScheme = new PlayerInputScheme();
         _inputScheme.Enable();
+        RadialUI = GameObject.Find("Radial");
     }
     void Start()
     {
-        
+        radialIndicatorClick = RadialUI.GetComponent<RadialIndicatorClick>();
     }
 
     // Update is called once per frame
@@ -40,9 +43,11 @@ public class PlayerSwap : MonoBehaviour
             {
                 cameraFollow.target = SwapGameObject;
                 SwapGameObject.AddComponent<PlayerMovementForItems>();
-                SwapGameObject.AddComponent<SwapBack>();
+                // SwapGameObject.AddComponent<SwapBack>();
+                RadialUI.transform.SetParent(SwapGameObject.transform);
                 gameObject.SetActive(false);
-                SwapBack.StartCount = true;
+                // SwapBack.StartCount = true;
+                radialIndicatorClick.startCount = true;
                 SwapGameObject = null;
             }
 

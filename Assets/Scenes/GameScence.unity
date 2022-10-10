@@ -713,7 +713,7 @@ RectTransform:
   m_GameObject: {fileID: 987682100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.343574, y: 0.343574, z: 0.343574}
+  m_LocalScale: {x: 0.3373931, y: 0.3373931, z: 0.3373931}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2067584365}
@@ -830,57 +830,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1337653812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1337653814}
-  - component: {fileID: 1337653813}
-  m_Layer: 0
-  m_Name: Radial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1337653813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337653812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a989c94637e7af46831b654f188906e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicatorTimer: 1
-  maxIndicatorTimer: 1
-  radialIndicatorUI: {fileID: 987682102}
-  selectKey: 323
-  myEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &1337653814
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337653812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 959.75, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551757191
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4acfae4dea8da1419aa31f91bcb4ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CountTime: 10
   StartCount: 0
   OriginalObject: {fileID: 1609236759}
   Camera: {fileID: 0}
@@ -1075,8 +1023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d33d5e26f7165418dc1f5dda08caa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RadialUI: {fileID: 0}
   cameraFollow: {fileID: 320356400}
-  SwapBack: {fileID: 1551757194}
   Dialogue: {fileID: 632907083}
 --- !u!1 &1616783441
 GameObject:
@@ -1400,8 +1348,9 @@ GameObject:
   - component: {fileID: 2067584368}
   - component: {fileID: 2067584367}
   - component: {fileID: 2067584366}
+  - component: {fileID: 2067584369}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Radial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,7 +1374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 1.2}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2067584366
@@ -1489,6 +1438,29 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2067584369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067584364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a989c94637e7af46831b654f188906e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorTimer: 5
+  maxIndicatorTimer: 5
+  radialIndicatorUI: {fileID: 987682102}
+  Camera: {fileID: 0}
+  cameraFollow: {fileID: 0}
+  OriginalObject: {fileID: 0}
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  RadialUI: {fileID: 0}
+  startCount: 0
 --- !u!1 &462223701911185484
 GameObject:
   m_ObjectHideFlags: 0

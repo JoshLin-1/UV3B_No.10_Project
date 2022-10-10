@@ -14,13 +14,36 @@ public class RadialIndicatorClick : MonoBehaviour
     [Header("UI Indicator")]
     [SerializeField]private Image radialIndicatorUI = null; 
 
-    [Header("Key Codes")]
-    [SerializeField] private KeyCode selectKey = KeyCode.Mouse0; 
+    // [Header("Key Codes")]
+    // [SerializeField] private KeyCode selectKey = KeyCode.Mouse0; 
+    [Header("Camera")]
+    public GameObject Camera; 
+    public CameraFollow cameraFollow;
+
+    [Header("PlayerObject")]
+    public GameObject OriginalObject;
 
     [Header("Unity Event")]
     [SerializeField] private UnityEvent myEvent = null;
 
+    [Header("UI")]
+    public GameObject RadialUI; 
+
+    private PlayerInputScheme _inputScheme; 
+
     private bool shouldUpdate = false; 
+    public bool startCount = false;
+
+     private void Awake()
+    {
+        OriginalObject = GameObject.Find("Cube");
+        Camera = GameObject.Find("Main Camera");
+        RadialUI = GameObject.Find("Radial");
+        cameraFollow = Camera.GetComponent<CameraFollow>();
+        _inputScheme = new PlayerInputScheme();
+        _inputScheme.Enable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +53,17 @@ public class RadialIndicatorClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(selectKey))
+        if(_inputScheme.Player.Interact.triggered)
+        {
+            startCount = false;
+            Swap();
+        }
+
+        if(startCount == true)
         {
             indicatorTimer -= Time.deltaTime; 
             radialIndicatorUI.enabled = true; 
-            radialIndicatorUI.fillAmount = indicatorTimer; 
+            radialIndicatorUI.fillAmount = indicatorTimer/maxIndicatorTimer; 
 
             if(indicatorTimer <= 0)
             {
@@ -49,7 +78,7 @@ public class RadialIndicatorClick : MonoBehaviour
             if(shouldUpdate)
             {
                 indicatorTimer += Time.deltaTime; 
-                radialIndicatorUI.fillAmount = indicatorTimer; 
+                radialIndicatorUI.fillAmount = indicatorTimer/maxIndicatorTimer; 
                 if(indicatorTimer >= maxIndicatorTimer)
                 {
                     indicatorTimer = maxIndicatorTimer; 
@@ -60,10 +89,23 @@ public class RadialIndicatorClick : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(selectKey))
+        if(startCount == false)
         {
             shouldUpdate = true; 
         }
 
+    }
+
+     private void Swap()
+    {
+
+        OriginalObject.SetActive(true);
+        OriginalObject.transform.position = new Vector3(cameraFollow.transform.position.x, cameraFollow.transform.position.y, 0);
+        Destroy(GetComponentInParent<PlayerMovementForItems>());
+        RadialUI.transform.SetParent(OriginalObject.transform);
+        cameraFollow.target = OriginalObject;
+        Destroy(GetComponent<PlayerMovementForItems>());
+        Destroy(GetComponent<SwapBack>());
+        
     }
 }
