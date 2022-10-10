@@ -11,43 +11,57 @@ public class PlayerSwap : MonoBehaviour
     
     GameObject SwapGameObject; 
     public CameraFollow cameraFollow;
-    RadialIndicatorClick radialIndicatorClick;
+    RadialIndicatorClick Script;
     public GameObject Dialogue; 
     private bool canTalk = false; 
+    private bool CanPossess = false; 
 
-    // Start is called before the first frame update
+   #if UNITY_EDITOR
+
+   /// <summary>
+   /// Called when the script is loaded or a value is changed in the
+   /// inspector (Called in the editor only).
+   /// </summary>
+   private void OnValidate()
+   {
+        RadialUI = GameObject.Find("RadialUI");
+   }
+
+   #endif
+   
 
     private void Awake()
     {
         _inputScheme = new PlayerInputScheme();
         _inputScheme.Enable();
-        RadialUI = GameObject.Find("Radial");
+      
     }
     void Start()
     {
-        radialIndicatorClick = RadialUI.GetComponent<RadialIndicatorClick>();
+        Script = RadialUI.GetComponent<RadialIndicatorClick>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Interact();
-       
+        Interact();  
     }
 
     private void Interact()
     {
         if(_inputScheme.Player.Interact.triggered)
         {
-            if(SwapGameObject!= null)
+            if(SwapGameObject!= null && Script.canInteract == true)
             {
                 cameraFollow.target = SwapGameObject;
                 SwapGameObject.AddComponent<PlayerMovementForItems>();
                 // SwapGameObject.AddComponent<SwapBack>();
-                RadialUI.transform.SetParent(SwapGameObject.transform);
+                // RadialUI.transform.SetParent(SwapGameObject.transform);
+                Script.TrackObject = SwapGameObject; 
+                Script.possessObject = SwapGameObject; 
                 gameObject.SetActive(false);
                 // SwapBack.StartCount = true;
-                radialIndicatorClick.startCount = true;
+                Script.startCount = true;
                 SwapGameObject = null;
             }
 

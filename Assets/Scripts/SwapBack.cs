@@ -7,12 +7,13 @@ using UnityEngine.Events;
 public class SwapBack : MonoBehaviour
 {
     
-    // [SerializeField] private float CountTime = 5.0f; 
+    [SerializeField] private float CountTime = 5.0f; 
     private float timeRemaining; 
     public bool StartCount = true; 
     public GameObject OriginalObject;
     public GameObject Camera; 
     public CameraFollow cameraFollow;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -23,33 +24,33 @@ public class SwapBack : MonoBehaviour
     }
     void Start()
     {
-        // timeRemaining = CountTime;
+        timeRemaining = CountTime;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        // CountDown();
+        CountDown();
     }
 
-    // private void CountDown()
-    // {
-    //     if(StartCount == true)
-    //     {
-    //         if(timeRemaining>0)
-    //         {
-    //             timeRemaining -= Time.deltaTime; 
-    //             Debug.Log(timeRemaining);
-    //         }
+    private void CountDown()
+    {
+        if(StartCount == true)
+        {
+            if(timeRemaining>0)
+            {
+                timeRemaining -= Time.deltaTime; 
+                Debug.Log(timeRemaining);
+            }
 
-    //         else
-    //         {
-    //             StartCount = false;
-    //             Swap();
-    //         }
-    //     }
-    // }
+            else
+            {
+                StartCount = false;
+                Swap();
+            }
+        }
+    }
 
     private void Swap()
     {
