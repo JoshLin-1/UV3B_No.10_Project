@@ -14,7 +14,7 @@ public class PlayerSwap : MonoBehaviour
     RadialIndicatorClick Script;
     public GameObject Dialogue; 
     private bool canTalk = false; 
-    private bool CanPossess = false; 
+    // private bool CanPossess = false; 
 
    #if UNITY_EDITOR
 

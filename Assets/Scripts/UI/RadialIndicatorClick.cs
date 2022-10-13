@@ -57,6 +57,7 @@ public class RadialIndicatorClick : MonoBehaviour
     {
         cameraFollow = Camera.GetComponent<CameraFollow>();
         _inputScheme = new PlayerInputScheme();
+        radialIndicatorUI.enabled = false; 
     }
 
     // Start is called before the first frame update

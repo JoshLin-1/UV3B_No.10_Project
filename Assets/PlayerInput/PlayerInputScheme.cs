@@ -114,6 +114,34 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""4cc9eb97-25cc-4178-9a43-50389ea08a73"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""70883828-cd73-4491-bd35-b35a2a8c6822"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""aa56682e-c950-4a91-bb05-28a47a6df70b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -134,6 +162,9 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_EscapeMenu = m_Menu.FindAction("Escape Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -230,6 +261,39 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_EscapeMenu;
+    public struct MenuActions
+    {
+        private @PlayerInputScheme m_Wrapper;
+        public MenuActions(@PlayerInputScheme wrapper) { m_Wrapper = wrapper; }
+        public InputAction @EscapeMenu => m_Wrapper.m_Menu_EscapeMenu;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @EscapeMenu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscapeMenu;
+                @EscapeMenu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscapeMenu;
+                @EscapeMenu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscapeMenu;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @EscapeMenu.started += instance.OnEscapeMenu;
+                @EscapeMenu.performed += instance.OnEscapeMenu;
+                @EscapeMenu.canceled += instance.OnEscapeMenu;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -243,5 +307,9 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnEscapeMenu(InputAction.CallbackContext context);
     }
 }
