@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor; 
 
 public class PlayerMovementForItems : MonoBehaviour
 {
    
-    public PlayerInputScheme _inputScheme;
     public Rigidbody m_Rigidbody;
     [SerializeField] float moveSpeed = 50; 
+    [SerializeField] PlayerController _input; 
 
 
 
@@ -19,7 +20,9 @@ public class PlayerMovementForItems : MonoBehaviour
     private void OnValidate()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-    }
+
+
+    }   
     #endif
 
      /// <summary>
@@ -27,36 +30,48 @@ public class PlayerMovementForItems : MonoBehaviour
      /// </summary>
      private void Awake()
      {
-        _inputScheme = new PlayerInputScheme();
-        Enable();
+
      }
 
-     private void Disable()
+     public void Enable()
      {
-        _inputScheme.Disable();
+        _input.onMovement += Move; 
+        _input.onStopMove += StopMove;
+     }
+     public void Disable()
+     {
+        _input.onMovement -= Move; 
+        _input.onStopMove -= StopMove;
      }
 
-     private void Enable()
-     {
-        _inputScheme.Enable();
-     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _input.EnableGameplayInput();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 vector2d = _inputScheme.Player.Movement.ReadValue<Vector2>();
-        if(vector2d!= Vector2.zero)
-        {
-            Vector3 vector3d = new Vector3(vector2d.x, vector2d.y, 0);
-            // Vector3 direction = transform.TransformDirection(vector3d);
-            m_Rigidbody.AddForce(vector3d* moveSpeed* Time.deltaTime);
-        }
+        // Vector2 vector2d = _inputScheme.Player.Movement.ReadValue<Vector2>();
+        // if(vector2d!= Vector2.zero)
+        // {
+        //     Vector3 vector3d = new Vector3(vector2d.x, vector2d.y, 0);
+        //     // Vector3 direction = transform.TransformDirection(vector3d);
+        //     m_Rigidbody.AddForce(vector3d* moveSpeed* Time.deltaTime);
+        // }
 
+    }
+
+    void Move(Vector2 moveInput)
+    {
+        Debug.Log("Detect");
+        m_Rigidbody.velocity = moveInput* moveSpeed; 
+    }
+
+    void StopMove()
+    {
+        m_Rigidbody.velocity = Vector3.zero; 
     }
 }

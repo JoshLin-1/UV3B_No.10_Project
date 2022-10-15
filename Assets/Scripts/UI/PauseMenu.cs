@@ -6,34 +6,49 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] PlayerController _input; 
 
     public static bool GameIsPaused = false; 
     public GameObject PausedMenuUI; 
 
-    private  PlayerInputScheme _inputScheme; 
+    
     // Update is called once per frame
 
     private void Awake()
     {
-        _inputScheme = new PlayerInputScheme();
-        _inputScheme.Enable();
+       
 
         //example
         // bool isgamepasuedTrue = PauseMenu.GameIsPaused;
       
     }
-    void Update()
+
+    void OnEnable()
     {
-        if(_inputScheme.Menu.EscapeMenu.triggered)
+        _input.onEscapeMenu+= escapeMenu; 
+        _input.onStopEscapeMenu+= stopEscapeMenu; 
+    }
+
+    void DisEnable()
+    {
+        _input.onEscapeMenu-= escapeMenu; 
+        _input.onStopEscapeMenu-= stopEscapeMenu; 
+    }
+
+    void escapeMenu()
+    {
+        if(GameIsPaused)
         {
-            if(GameIsPaused)
-            {
-                Resume();
-            }
-            else{
-                Paused();
-            }
+            Resume();
         }
+        else{
+            Paused();
+        }
+    }
+
+    void stopEscapeMenu()
+    {
+
     }
 
     public void Resume()

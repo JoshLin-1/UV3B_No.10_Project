@@ -10,9 +10,11 @@ public class SwapBack : MonoBehaviour
     [SerializeField] private float CountTime = 5.0f; 
     private float timeRemaining; 
     public bool StartCount = true; 
-    public GameObject OriginalObject;
+    public GameObject OriginalObject; 
     public GameObject Camera; 
-    public CameraFollow cameraFollow;
+    public CameraFollow cameraFollow; 
+
+   
 
 
     // Start is called before the first frame update
@@ -54,8 +56,8 @@ public class SwapBack : MonoBehaviour
 
     private void Swap()
     {
+        OriginalObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         OriginalObject.SetActive(true);
-        OriginalObject.transform.position = new Vector3(cameraFollow.transform.position.x, cameraFollow.transform.position.y, 0);
         cameraFollow.target = OriginalObject;
         Destroy(GetComponent<PlayerMovementForItems>());
         Destroy(GetComponent<SwapBack>());

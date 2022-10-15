@@ -100,8 +100,9 @@ public class RadialIndicatorClick : MonoBehaviour
                 radialIndicatorUI.fillAmount = maxIndicatorTimer; 
                 radialIndicatorUI.enabled = false; 
                 myEvent.Invoke();
-                Time.timeScale = 0;
+                // Time.timeScale = 0;
                 RadialUI.SetActive(false);
+                Swap();
             }
         }
         else

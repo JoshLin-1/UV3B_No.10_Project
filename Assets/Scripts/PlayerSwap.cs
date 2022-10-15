@@ -7,13 +7,18 @@ public class PlayerSwap : MonoBehaviour
 
     [Header("UI")]
     public GameObject RadialUI; 
-    private PlayerInputScheme _inputScheme;
+    // private PlayerInputScheme _inputScheme;
+
+    [SerializeField] PlayerController _input; 
+    [SerializeField] PlayerController _Items; 
     
     GameObject SwapGameObject; 
     public CameraFollow cameraFollow;
     RadialIndicatorClick Script;
     public GameObject Dialogue; 
     private bool canTalk = false; 
+
+    
     // private bool CanPossess = false; 
 
    #if UNITY_EDITOR
@@ -32,34 +37,48 @@ public class PlayerSwap : MonoBehaviour
 
     private void Awake()
     {
-        _inputScheme = new PlayerInputScheme();
-        _inputScheme.Enable();
+        // _inputScheme = new PlayerInputScheme();
+        // _inputScheme.Enable();
       
     }
     void Start()
     {
+        _input.EnableGameplayInput();
         Script = RadialUI.GetComponent<RadialIndicatorClick>();
+    }
+
+    void OnEnable()
+    {
+        _input.onInteract += Interact;
+        _input.onStopInteract += StopInteract;
+    }
+
+    void OnDisable()
+    {
+        _input.onInteract -= Interact;
+        _input.onStopInteract -= StopInteract;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Interact();  
+        // Interact();  
     }
 
-    private void Interact()
+    void Interact()
     {
-        if(_inputScheme.Player.Interact.triggered)
-        {
+        // if(_inputScheme.Player.Interact.triggered)
+        // {
             if(SwapGameObject!= null && Script.canInteract == true)
             {
                 cameraFollow.target = SwapGameObject;
-                SwapGameObject.AddComponent<PlayerMovementForItems>();
+                // SwapGameObject.AddComponent<PlayerMovementForItems>();
                 // SwapGameObject.AddComponent<SwapBack>();
                 // RadialUI.transform.SetParent(SwapGameObject.transform);
                 Script.TrackObject = SwapGameObject; 
                 Script.possessObject = SwapGameObject; 
                 gameObject.SetActive(false);
+                
                 // SwapBack.StartCount = true;
                 Script.startCount = true;
                 SwapGameObject = null;
@@ -69,7 +88,12 @@ public class PlayerSwap : MonoBehaviour
             {
                 Dialogue.SetActive(true);
             }
-        }
+        // }
+    }
+
+    void StopInteract()
+    {
+
     }
 
     
