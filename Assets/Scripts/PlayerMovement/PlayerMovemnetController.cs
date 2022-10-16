@@ -41,7 +41,7 @@ public class PlayerMovemnetController : MonoBehaviour
         _input.onStopMove += StopMove;
     }
 
-    public void OnDisable()
+    void OnDisable()
     {
         _input.onMovement -= Move;
         _input.onStopMove -= StopMove;

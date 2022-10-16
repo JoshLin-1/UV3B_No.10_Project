@@ -25,8 +25,9 @@ public class TriggerTestScript : MonoBehaviour
         if(other.GetComponent<PlayerMovemnetController>())
         {
             other.GetComponent<PlayerMovemnetController>().direction = Vector3.zero;
+            _input.DisablePlayerInputs();
         }
-        _input.DisablePlayerInputs();
+        
 
     }
 }

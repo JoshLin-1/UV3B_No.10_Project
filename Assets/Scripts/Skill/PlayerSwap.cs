@@ -47,13 +47,13 @@ public class PlayerSwap : MonoBehaviour
         Script = RadialUI.GetComponent<RadialIndicatorClick>();
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         _input.onInteract += Interact;
         _input.onStopInteract += StopInteract;
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         _input.onInteract -= Interact;
         _input.onStopInteract -= StopInteract;
@@ -73,6 +73,7 @@ public class PlayerSwap : MonoBehaviour
             {
                 cameraFollow.target = SwapGameObject;
                 // SwapGameObject.AddComponent<PlayerMovementForItems>();
+                SwapGameObject.GetComponent<PlayerMovementForItems>().OnEnable();
                 // SwapGameObject.AddComponent<SwapBack>();
                 // RadialUI.transform.SetParent(SwapGameObject.transform);
                 Script.TrackObject = SwapGameObject; 

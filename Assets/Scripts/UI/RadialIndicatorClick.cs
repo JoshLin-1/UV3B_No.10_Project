@@ -96,13 +96,17 @@ public class RadialIndicatorClick : MonoBehaviour
 
             if(indicatorTimer <= 0)
             {
-                indicatorTimer = maxIndicatorTimer; 
-                radialIndicatorUI.fillAmount = maxIndicatorTimer; 
-                radialIndicatorUI.enabled = false; 
+                startCount = false;
+                _inputScheme.Disable();
+                Swap();
+                // indicatorTimer = maxIndicatorTimer; 
+                // radialIndicatorUI.fillAmount = maxIndicatorTimer; 
+                // radialIndicatorUI.enabled = false; 
                 myEvent.Invoke();
                 // Time.timeScale = 0;
-                RadialUI.SetActive(false);
-                Swap();
+                // RadialUI.SetActive(false);
+                // Swap();
+                // startCount = false; 
             }
         }
         else
@@ -133,8 +137,10 @@ public class RadialIndicatorClick : MonoBehaviour
 
         OriginalObject.SetActive(true);
         OriginalObject.transform.position = new Vector3(cameraFollow.transform.position.x, cameraFollow.transform.position.y, 0);
-        Destroy(GetComponentInParent<PlayerMovementForItems>());
-        Destroy(possessObject.GetComponentInParent<PlayerMovementForItems>());
+        TrackObject.GetComponent<PlayerMovementForItems>().OnDisable();
+        // OriginalObject.GetComponent<PlayerMovemnetController>().OnEnable();
+        // Destroy(GetComponentInParent<PlayerMovementForItems>());
+        // Destroy(possessObject.GetComponentInParent<PlayerMovementForItems>());
         // RadialUI.transform.SetParent(OriginalObject.transform);
         TrackObject = OriginalObject; 
         cameraFollow.target = OriginalObject;
