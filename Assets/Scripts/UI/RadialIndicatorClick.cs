@@ -46,7 +46,7 @@ public class RadialIndicatorClick : MonoBehaviour
    /// </summary>
     private void OnValidate()
     {
-        OriginalObject = GameObject.Find("Cube");
+        OriginalObject = GameObject.Find("Player");
         Camera = GameObject.Find("Main Camera");
         RadialUI = GameObject.Find("RadialUI");
     }
@@ -137,7 +137,7 @@ public class RadialIndicatorClick : MonoBehaviour
     {
 
         OriginalObject.SetActive(true);
-        OriginalObject.transform.position = new Vector3(cameraFollow.transform.position.x, cameraFollow.transform.position.y, 0);
+        OriginalObject.transform.position = new Vector3(TrackObject.transform.position.x, TrackObject.transform.position.y, 0);
         TrackObject.GetComponent<PlayerMovementForItems>().OnDisable();
         // OriginalObject.GetComponent<PlayerMovemnetController>().OnEnable();
         // Destroy(GetComponentInParent<PlayerMovementForItems>());
