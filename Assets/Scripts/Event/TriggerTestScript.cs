@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerTestScript : MonoBehaviour
 {
     [SerializeField] PlayerController _input; 
+    public GameObject TextBlinkUI; 
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class TriggerTestScript : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             _input.EnableGameplayInput();
+            TextBlinkUI.SetActive(false);
         }
     }
 
@@ -26,6 +28,8 @@ public class TriggerTestScript : MonoBehaviour
         {
             other.GetComponent<PlayerMovemnetController>().direction = Vector3.zero;
             _input.DisablePlayerInputs();
+
+            TextBlinkUI.SetActive(true);
         }
         
 
