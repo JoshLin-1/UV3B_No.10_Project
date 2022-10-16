@@ -6,6 +6,10 @@ public class TriggerTestScript : MonoBehaviour
 {
     [SerializeField] PlayerController _input; 
     public GameObject TextBlinkUI; 
+
+    public bool OnlyOnce; 
+    bool TextShow = true; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,10 @@ public class TriggerTestScript : MonoBehaviour
         {
             _input.EnableGameplayInput();
             TextBlinkUI.SetActive(false);
+            if(OnlyOnce)
+            {
+                TextShow = false; 
+            }
         }
     }
 
@@ -29,7 +37,10 @@ public class TriggerTestScript : MonoBehaviour
             other.GetComponent<PlayerMovemnetController>().direction = Vector3.zero;
             _input.DisablePlayerInputs();
 
-            TextBlinkUI.SetActive(true);
+            if(TextShow)
+            {
+                TextBlinkUI.SetActive(true);
+            }
         }
         
 

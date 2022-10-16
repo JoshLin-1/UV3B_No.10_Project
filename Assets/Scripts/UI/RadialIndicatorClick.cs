@@ -70,6 +70,7 @@ public class RadialIndicatorClick : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(TrackObject.transform.position.x, TrackObject.transform.position.y+1.5f, 0);
+
         if(indicatorTimer == maxIndicatorTimer)
         {
             canInteract = true; 

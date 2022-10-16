@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSwap : MonoBehaviour
 {
 
     [Header("UI")]
     public GameObject RadialUI; 
+    public GameObject InteractUI; 
     // private PlayerInputScheme _inputScheme;
+
+    [Header("UI Indicator")]
+    [SerializeField]private GameObject blinkText;
+
 
     [SerializeField] PlayerController _input; 
     [SerializeField] PlayerController _Items; 
@@ -62,7 +68,10 @@ public class PlayerSwap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Interact();  
+        if(SwapGameObject!= null &&Script.canInteract == true)
+        {
+            blinkText.transform.position = new Vector3(SwapGameObject.transform.position.x, SwapGameObject.transform.position.y+1.5f, 0);
+        }
     }
 
     void Interact()
@@ -71,6 +80,7 @@ public class PlayerSwap : MonoBehaviour
         // {
             if(SwapGameObject!= null && Script.canInteract == true)
             {
+                InteractUI.SetActive(false);
                 cameraFollow.target = SwapGameObject;
                 // SwapGameObject.AddComponent<PlayerMovementForItems>();
                 SwapGameObject.GetComponent<PlayerMovementForItems>().OnEnable();
@@ -109,6 +119,10 @@ public class PlayerSwap : MonoBehaviour
         {
             Debug.Log("Get Object");
             SwapGameObject = other.gameObject; 
+            if(Script.canInteract == true)
+            {
+                InteractUI.SetActive(true);
+            }
         }
         if(other.CompareTag("Talk"))
         {
@@ -125,6 +139,7 @@ public class PlayerSwap : MonoBehaviour
     {
         SwapGameObject = null;
         Debug.Log("Lost Object");
+        InteractUI.SetActive(false);
     }
 
 }
