@@ -8,6 +8,7 @@ TagManager:
   - s
   - Interact
   - Talk
+  - WayPoints
   layers:
   - Default
   - TransparentFX
