@@ -17,6 +17,9 @@ public class PlayerController : ScriptableObject, PlayerInputScheme.IPlayerActio
     public event UnityAction onEscapeMenu = delegate {};
     public event UnityAction onStopEscapeMenu = delegate {};
 
+    public event UnityAction onJump= delegate {};
+    public event UnityAction onStopJump = delegate {};
+
     PlayerInputScheme _inputScheme;
 
     /// <summary>
@@ -88,7 +91,7 @@ public class PlayerController : ScriptableObject, PlayerInputScheme.IPlayerActio
 
    public void OnEscapeMenu(InputAction.CallbackContext context)
    {
-         if(context.phase == InputActionPhase.Started)
+        if(context.phase == InputActionPhase.Started)
         {
            
             onEscapeMenu.Invoke();
@@ -98,6 +101,21 @@ public class PlayerController : ScriptableObject, PlayerInputScheme.IPlayerActio
         if(context.phase == InputActionPhase.Canceled)
         {
             onStopEscapeMenu.Invoke();
+        }
+   }
+
+   public void OnJump(InputAction.CallbackContext context)
+   {
+        if(context.phase == InputActionPhase.Started)
+        {
+           
+            onJump.Invoke();
+            
+        }
+
+        if(context.phase == InputActionPhase.Canceled)
+        {
+            onStopJump.Invoke();
         }
    }
 }

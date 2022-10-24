@@ -39,12 +39,18 @@ public class PlayerMovemnetController : MonoBehaviour
     {
         _input.onMovement += Move;
         _input.onStopMove += StopMove;
+        _input.onJump += Jump;
+        _input.onStopJump += StopJump;
+
     }
 
     void OnDisable()
     {
         _input.onMovement -= Move;
         _input.onStopMove -= StopMove;
+        _input.onJump -= Jump;
+        _input.onStopJump -= StopJump;
+
     }
     
     void Start()
@@ -70,7 +76,7 @@ public class PlayerMovemnetController : MonoBehaviour
 
     void Move(Vector2 moveInput)
     {
-        Vector3 vector3d = new Vector3(moveInput.x, moveInput.y, 0);
+        Vector3 vector3d = new Vector3(moveInput.x,-1 , moveInput.y);
         direction = transform.TransformDirection(vector3d);    
     }
 
@@ -79,6 +85,16 @@ public class PlayerMovemnetController : MonoBehaviour
         direction = Vector3.zero; 
         // rigidbody.velocity = Vector2.zero; 
         // moveAmount = new Vector2(0,0); 
+    }
+
+    void Jump()
+    {
+        direction += new Vector3(0, 1, 0) ;
+    }
+
+    void StopJump()
+    {
+        direction -= new Vector3(0,2,0);
     }
 
 }
