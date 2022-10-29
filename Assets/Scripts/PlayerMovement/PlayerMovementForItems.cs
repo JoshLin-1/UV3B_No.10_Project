@@ -80,7 +80,7 @@ public class PlayerMovementForItems : MonoBehaviour
     {
         Debug.Log("Detect");
         // moveAmount = new Vector3(moveInput.x, moveInput.y, 0); 
-        Vector2 moveAmount = new Vector3(moveInput.x* moveSpeed, 0 , moveInput.y* moveSpeed); 
+        Vector3 moveAmount = new Vector3(moveInput.x* moveSpeed, 0 ,moveInput.y* moveSpeed); 
         m_Rigidbody.velocity = moveAmount;
     }
 

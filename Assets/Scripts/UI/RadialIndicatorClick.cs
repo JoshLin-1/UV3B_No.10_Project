@@ -24,7 +24,7 @@ public class RadialIndicatorClick : MonoBehaviour
 
     [Header("PlayerObject")]
     public GameObject OriginalObject; 
-    [SerializeField] public GameObject possessObject; 
+    // [SerializeField] public GameObject possessObject; 
 
     [Header("Unity Event")]
     [SerializeField] private UnityEvent myEvent = null;
@@ -69,7 +69,7 @@ public class RadialIndicatorClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(TrackObject.transform.position.x, TrackObject.transform.position.y+1.5f, 0);
+        transform.position = new Vector3(TrackObject.transform.position.x, TrackObject.transform.position.y+1.5f, TrackObject.transform.position.z);
 
         if(indicatorTimer == maxIndicatorTimer)
         {
@@ -133,19 +133,19 @@ public class RadialIndicatorClick : MonoBehaviour
 
     }
 
-     private void Swap()
+    private void Swap()
     {
 
         OriginalObject.SetActive(true);
         OriginalObject.transform.position = new Vector3(TrackObject.transform.position.x, TrackObject.transform.position.y, 0);
         TrackObject.GetComponent<PlayerMovementForItems>().OnDisable();
+        TrackObject = OriginalObject; 
+        cameraFollow.target = OriginalObject;
         // OriginalObject.GetComponent<PlayerMovemnetController>().OnEnable();
         // Destroy(GetComponentInParent<PlayerMovementForItems>());
         // Destroy(possessObject.GetComponentInParent<PlayerMovementForItems>());
         // RadialUI.transform.SetParent(OriginalObject.transform);
-        TrackObject = OriginalObject; 
-        cameraFollow.target = OriginalObject;
-        possessObject = null; 
+        // possessObject = null; 
         // Destroy(GetComponent<PlayerMovementForItems>());
         // Destroy(GetComponent<SwapBack>());
     }

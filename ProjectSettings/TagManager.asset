@@ -9,6 +9,7 @@ TagManager:
   - Interact
   - Talk
   - WayPoints
+  - Search
   layers:
   - Default
   - TransparentFX
