@@ -14,6 +14,11 @@ public class PlayerSwap : MonoBehaviour
     [Header("UI Indicator")]
     [SerializeField]private GameObject blinkText;
 
+    [Header("SeachMenu")]
+    [SerializeField]private GameObject SeachUI;
+
+    
+
 
     [SerializeField] PlayerController _input; 
     [SerializeField] PlayerController _Items; 
@@ -23,6 +28,8 @@ public class PlayerSwap : MonoBehaviour
     RadialIndicatorClick Script;
     public GameObject Dialogue; 
     private bool canTalk = false; 
+    
+    private bool canSearch = false; 
 
     
     // private bool CanPossess = false; 
@@ -80,25 +87,36 @@ public class PlayerSwap : MonoBehaviour
         // {
             if(SwapGameObject!= null && Script.canInteract == true)
             {
-                InteractUI.SetActive(false);
                 cameraFollow.target = SwapGameObject;
-                // SwapGameObject.AddComponent<PlayerMovementForItems>();
+                gameObject.SetActive(false);
+            
+                InteractUI.SetActive(false);
                 SwapGameObject.GetComponent<PlayerMovementForItems>().OnEnable();
+                Script.TrackObject = SwapGameObject;    
+                Script.startCount = true;   
+                SwapGameObject = null;
+                // Script.possessObject = SwapGameObject; 
+
+                // SwapGameObject.AddComponent<PlayerMovementForItems>();
                 // SwapGameObject.AddComponent<SwapBack>();
                 // RadialUI.transform.SetParent(SwapGameObject.transform);
-                Script.TrackObject = SwapGameObject; 
-                Script.possessObject = SwapGameObject; 
-                gameObject.SetActive(false);
-                
                 // SwapBack.StartCount = true;
-                Script.startCount = true;
-                SwapGameObject = null;
             }
 
             if(Dialogue != null && canTalk == true)
             {
                 Dialogue.SetActive(true);
             }
+
+            if(canSearch == true)
+            {
+                SeachUI.SetActive(true);
+                gameObject.SetActive(false);
+                canSearch = false;
+            }
+
+
+
         // }
     }
 
@@ -129,6 +147,13 @@ public class PlayerSwap : MonoBehaviour
             Debug.Log("Interact to Talk");
             canTalk = true;
         }
+
+        if(other.CompareTag("Search"))
+        {
+            Debug.Log("Interact to Search");
+            canSearch = true;
+            // SwapGameObject = other.gameObject; 
+        }
     }
 
     /// <summary>
@@ -140,6 +165,8 @@ public class PlayerSwap : MonoBehaviour
         SwapGameObject = null;
         Debug.Log("Lost Object");
         InteractUI.SetActive(false);
+        canSearch = false;
+          canTalk = false;
     }
 
 }

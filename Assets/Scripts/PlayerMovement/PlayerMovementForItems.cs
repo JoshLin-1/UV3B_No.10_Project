@@ -15,6 +15,7 @@ public class PlayerMovementForItems : MonoBehaviour
 
     // PlayerInputScheme _inputScheme; 
     [SerializeField] float moveSpeed = 50; 
+    [SerializeField] float jumpValue = 10; 
 
 
 
@@ -45,11 +46,14 @@ public class PlayerMovementForItems : MonoBehaviour
      {
         _input.onMovement += Move; 
         _input.onStopMove += StopMove;
+        _input.onJump += Jump;
      }
      public void OnDisable()
      {
         _input.onMovement -= Move; 
         _input.onStopMove -= StopMove; 
+        _input.onJump -= Jump;
+
      }
 
 
@@ -76,7 +80,7 @@ public class PlayerMovementForItems : MonoBehaviour
     {
         Debug.Log("Detect");
         // moveAmount = new Vector3(moveInput.x, moveInput.y, 0); 
-        Vector2 moveAmount = moveInput* moveSpeed; 
+        Vector3 moveAmount = new Vector3(moveInput.x* moveSpeed, 0 ,moveInput.y* moveSpeed); 
         m_Rigidbody.velocity = moveAmount;
     }
 
@@ -84,4 +88,10 @@ public class PlayerMovementForItems : MonoBehaviour
     {
         // m_Rigidbody.velocity = Vector2.zero; 
     }
+
+    void Jump()
+    {
+        m_Rigidbody.velocity += new Vector3(0, jumpValue, 0);
+    }
+    
 }
