@@ -77,7 +77,33 @@ public class PlayerMovemnetController : MonoBehaviour
     void Move(Vector2 moveInput)
     {
         Vector3 vector3d = new Vector3(moveInput.x,-1 , moveInput.y);
-        direction = transform.TransformDirection(vector3d);    
+        direction = vector3d;
+        //transform.TransformDirection(vector3d);    
+
+        Debug.Log(moveInput.x);
+
+        if(moveInput.x>0)
+        {
+            transform.rotation = Quaternion.Euler(0, 270, 0);
+        }
+        else if (moveInput.x<0)
+        {
+                       transform.rotation = Quaternion.Euler(0, 90, 0);
+
+        }
+        else if (moveInput.y<0)
+        {
+        
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
+
+
+        }
+        else if(moveInput.y>0)
+        {
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
+
+
+        }
     }
 
     void StopMove()
