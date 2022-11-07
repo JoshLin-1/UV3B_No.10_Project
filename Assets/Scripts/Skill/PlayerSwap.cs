@@ -17,7 +17,8 @@ public class PlayerSwap : MonoBehaviour
     [Header("SeachMenu")]
     [SerializeField]private GameObject SeachUI;
 
-    
+    [Header("Camera")]
+    public GameObject Camera; 
 
 
     [SerializeField] PlayerController _input; 
@@ -43,6 +44,8 @@ public class PlayerSwap : MonoBehaviour
    private void OnValidate()
    {
         RadialUI = GameObject.Find("RadialUI");
+        Camera = GameObject.Find("Main Camera");
+
    }
 
    #endif
@@ -77,7 +80,8 @@ public class PlayerSwap : MonoBehaviour
     {
         if(SwapGameObject!= null &&Script.canInteract == true)
         {
-            blinkText.transform.position = new Vector3(SwapGameObject.transform.position.x, SwapGameObject.transform.position.y+1.5f, 0);
+            blinkText.transform.position = new Vector3(SwapGameObject.transform.position.x, SwapGameObject.transform.position.y+1.5f, SwapGameObject.transform.position.z);
+            blinkText.transform.rotation = Camera.transform.rotation; 
         }
     }
 
