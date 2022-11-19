@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: book_pattern_rough_4k
-    second: {fileID: 2800000, guid: f7527bf0f8534034cbfbc437ebfba693, type: 3}
+    second: {fileID: 2800000, guid: 959d352d765130d4995a5eec157a34e4, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: plywood_diff_4k
-    second: {fileID: 2800000, guid: 5d25aefb5e35434478c9d6e58e6abdad, type: 3}
+    second: {fileID: 2800000, guid: eb59b794e27dbe64c9b8d0cc71d6b594, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: plywood_nor_gl_4k
-    second: {fileID: 2800000, guid: 4a35625c06e176644b2d7d875d8e7770, type: 3}
+    second: {fileID: 2800000, guid: ca0ea4b4682763a42b185b0f1ee90577, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: plywood_rough_4k
-    second: {fileID: 2800000, guid: fbee9c8495eb7f54a81b382dbc186695, type: 3}
+    second: {fileID: 2800000, guid: 34e5e8ae17ef3c14aa162bec0b144e4c, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
