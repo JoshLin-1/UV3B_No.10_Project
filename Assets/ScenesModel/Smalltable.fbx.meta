@@ -1,57 +1,19 @@
 fileFormatVersion: 2
-guid: 550f1a1e8a6406a4ba679fa40c6be940
+guid: f267d74ec34b33f43854158fb127b3e7
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: -8515560403302317629
-    second: Cube.001|Cube.001Action
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a5bb7934a14e0894fad9893549d7e76a, type: 2}
   - first:
-      74: -4064532029014869935
-    second: Cube.001|Cube.001Action.001
-  - first:
-      74: 228470328875462131
-    second: Cube.001|Cube.001Action.002
-  - first:
-      74: 1391493248101175380
-    second: Cube.001|Cube.001Action.003
-  - first:
-      74: 978295544477664516
-    second: Cube.002|Cube.001Action
-  - first:
-      74: 5438752550503332007
-    second: Cube.002|Cube.001Action.001
-  - first:
-      74: -7955520868732675273
-    second: Cube.002|Cube.001Action.002
-  - first:
-      74: 1791114177730741403
-    second: Cube.002|Cube.001Action.003
-  - first:
-      74: -4805450742491024743
-    second: Cube.003|Cube.001Action
-  - first:
-      74: 1967545001352532774
-    second: Cube.003|Cube.001Action.001
-  - first:
-      74: 7465705289249257479
-    second: Cube.003|Cube.001Action.002
-  - first:
-      74: -9210417202461875568
-    second: Cube.003|Cube.001Action.003
-  - first:
-      74: 194676454379394236
-    second: Cube.004|Cube.001Action
-  - first:
-      74: -5452037223364470631
-    second: Cube.004|Cube.001Action.001
-  - first:
-      74: 8986423655897778230
-    second: Cube.004|Cube.001Action.002
-  - first:
-      74: -3448210713976981693
-    second: Cube.004|Cube.001Action.003
-  externalObjects: {}
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: pink wood
+    second: {fileID: 2800000, guid: 2ba0986b367c1c2409f7ef21ed731194, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
