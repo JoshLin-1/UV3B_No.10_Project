@@ -1,57 +1,24 @@
 fileFormatVersion: 2
-guid: 550f1a1e8a6406a4ba679fa40c6be940
+guid: b68eca5c8222a6048a3e5c727fa48014
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: -8515560403302317629
-    second: Cube.001|Cube.001Action
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 7464166981ee3134ba9d4b84b0f88bc1, type: 2}
   - first:
-      74: -4064532029014869935
-    second: Cube.001|Cube.001Action.001
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 7129f9bcba1aead48ad108c6db72cd53, type: 2}
   - first:
-      74: 228470328875462131
-    second: Cube.001|Cube.001Action.002
-  - first:
-      74: 1391493248101175380
-    second: Cube.001|Cube.001Action.003
-  - first:
-      74: 978295544477664516
-    second: Cube.002|Cube.001Action
-  - first:
-      74: 5438752550503332007
-    second: Cube.002|Cube.001Action.001
-  - first:
-      74: -7955520868732675273
-    second: Cube.002|Cube.001Action.002
-  - first:
-      74: 1791114177730741403
-    second: Cube.002|Cube.001Action.003
-  - first:
-      74: -4805450742491024743
-    second: Cube.003|Cube.001Action
-  - first:
-      74: 1967545001352532774
-    second: Cube.003|Cube.001Action.001
-  - first:
-      74: 7465705289249257479
-    second: Cube.003|Cube.001Action.002
-  - first:
-      74: -9210417202461875568
-    second: Cube.003|Cube.001Action.003
-  - first:
-      74: 194676454379394236
-    second: Cube.004|Cube.001Action
-  - first:
-      74: -5452037223364470631
-    second: Cube.004|Cube.001Action.001
-  - first:
-      74: 8986423655897778230
-    second: Cube.004|Cube.001Action.002
-  - first:
-      74: -3448210713976981693
-    second: Cube.004|Cube.001Action.003
-  externalObjects: {}
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: "\u76E4\u5B50\u82B1\u7D0B"
+    second: {fileID: 2800000, guid: 94e14ae82d0a14041a33de3a87e3753c, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
